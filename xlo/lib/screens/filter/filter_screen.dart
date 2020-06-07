@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:xlo/models/filter.dart';
 import 'package:xlo/screens/filter/widget/section_title.dart';
+
+import 'widget/order_by_field.dart';
 
 class FilterScreen extends StatefulWidget {
   @override
@@ -24,6 +27,13 @@ class _FilterScreenState extends State<FilterScreen> {
               padding: const EdgeInsets.all(16),
               children: <Widget>[
                 const SectionTitle(title: 'Order por'),
+                OrderByField(
+                  initialValue: OrderBy.DATE,
+                  onSaved: (v){
+
+                  },
+                ),
+
                 const SectionTitle(title: 'Preço (R\$)'),
                 const SectionTitle(title: 'Tipo de anunciante'),
               ],
