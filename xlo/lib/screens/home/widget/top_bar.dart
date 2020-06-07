@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xlo/screens/filter/filter_screen.dart';
 
 import 'bar_button.dart';
 
@@ -25,7 +26,11 @@ class TopBar extends StatelessWidget {
               border: Border(left: BorderSide(color: Colors.grey[400])),
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => FilterScreen())
+              );
+            },
           ),
         ],
       ),
