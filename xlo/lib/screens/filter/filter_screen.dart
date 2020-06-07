@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:xlo/models/filter.dart';
 import 'package:xlo/screens/filter/widget/section_title.dart';
 
+import 'widget/animated_button.dart';
 import 'widget/order_by_field.dart';
 import 'widget/price_range_field.dart';
 import 'widget/vendor_type_field.dart';
@@ -13,6 +14,7 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +28,31 @@ class _FilterScreenState extends State<FilterScreen> {
           Form(
             key: _formKey,
             child: ListView(
+              controller: _scrollController,
               padding: const EdgeInsets.all(16),
               children: <Widget>[
                 const SectionTitle(title: 'Order por'),
                 OrderByField(
                   initialValue: OrderBy.DATE,
-                  onSaved: (v){
-
-                  },
+                  onSaved: (v) {},
                 ),
-
                 const SectionTitle(title: 'Preço (R\$)'),
                 PriceRangeField(),
                 const SectionTitle(title: 'Tipo de anunciante'),
                 VendorTypeField(
-                  initialValue: VENDOR_TYPE_PARTICULAR | VENDOR_TYPE_PROFESSIONAL,
-                  onSaved: (v){},
-                )
+                  initialValue:
+                      VENDOR_TYPE_PARTICULAR | VENDOR_TYPE_PROFESSIONAL,
+                  onSaved: (v) {},
+                ),
+                const SizedBox(height: 100,)
               ],
             ),
+          ),
+          AnimatedButton(
+            scrollController: _scrollController,
+            onTap: (){
+              print('Tocou');
+            },
           ),
         ],
       ),
