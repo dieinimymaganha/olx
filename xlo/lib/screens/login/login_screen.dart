@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/blocs/login/field_state.dart';
 import 'package:xlo/blocs/login/login_bloc.dart';
+import 'package:xlo/screens/login/widget/login_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -98,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   onChanged: _loginBloc.changePassword,
                 );
               },
-            )
+            ),
+            LoginButton(),
           ],
         ),
       )),
