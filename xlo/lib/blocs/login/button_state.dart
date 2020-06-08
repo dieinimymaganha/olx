@@ -1,6 +1,6 @@
 class ButtonState {
   bool enabled;
-  bool loaging;
+  bool loading;
 
-  ButtonState({this.enabled, this.loaging});
+  ButtonState({this.enabled, this.loading});
 }
