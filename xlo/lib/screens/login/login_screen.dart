@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:xlo/blocs/login/field_state.dart';
+import 'package:xlo/blocs/login/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -6,6 +8,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  LoginBloc _loginBloc = LoginBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +41,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.w700),
               ),
             ),
-            StreamBuilder(
+            StreamBuilder<FieldState>(
               builder: (context, snapshot) {
                 return TextField(
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,
-                  decoration:
-                      InputDecoration(border: const OutlineInputBorder()),
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      errorText: snapshot.data.error),
+                  enabled: snapshot.data.enabled,
+                  onChanged: _loginBloc.changeEmail,
                 );
               },
             ),
@@ -75,13 +82,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            StreamBuilder(
+            StreamBuilder<FieldState>(
               builder: (context, snapshot) {
                 return TextField(
                   autocorrect: false,
                   obscureText: true,
                   decoration:
-                  InputDecoration(border: const OutlineInputBorder()),
+                      InputDecoration(border: const OutlineInputBorder(),
+                      errorText: snapshot.data.error),
+                  enabled: snapshot.data.enabled,
+                  onChanged: _loginBloc.changePassword,
                 );
               },
             )
