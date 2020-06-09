@@ -3,6 +3,7 @@ import 'package:xlo/blocs/login/field_state.dart';
 import 'package:xlo/blocs/login/login_bloc.dart';
 import 'package:xlo/screens/login/widget/login_button.dart';
 import 'package:xlo/screens/login/widget/or_divoder.dart';
+import 'package:xlo/screens/signup/signup_screen.dart';
 
 import 'widget/facebook_button.dart';
 
@@ -123,9 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-//                        Navigator.of(context).push(MaterialPageRoute(
-//                          builder: (context) => SingUpScreen();
-//                        ));
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignUpScreen()
+                        ));
                       },
                       child: Text(
                         'Cadastre-se',
