@@ -32,7 +32,6 @@ class PasswordField extends StatelessWidget {
           return 'Senha inválida';
         return null;
       },
-      autovalidate: true,
       builder: (state){
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
