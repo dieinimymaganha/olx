@@ -1,6 +1,7 @@
 import 'package:brasil_fields/formatter/real_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:xlo/api/api_postalcode.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
 
 import 'widgets/image_field.dart';
@@ -101,6 +102,9 @@ class _CreateScreenState extends State<CreateScreen> {
                       fontWeight: FontWeight.w500),
                 ),
                 onPressed: () {
+                  getAddressFromApi('13.087-000');
+
+
                   if (_formKey.currentState.validate()) {}
                 },
               ),
