@@ -7,7 +7,7 @@ import 'package:xlo/validators/login_validator.dart';
 class LoginBloc with LoginValidator {
 
   final BehaviorSubject<LoginBlocState> _stateController =
-  BehaviorSubject<LoginBlocState>.seeded(LoginBlocState(LoginState.IDLE));
+    BehaviorSubject<LoginBlocState>.seeded(LoginBlocState(LoginState.IDLE));
   final BehaviorSubject<String> _emailController = BehaviorSubject<String>();
   final BehaviorSubject<String> _passwordController = BehaviorSubject<String>();
 
@@ -18,8 +18,8 @@ class LoginBloc with LoginValidator {
 
   Stream<FieldState> get outEmail => Rx.combineLatest2(
       _emailController.stream.transform(emailValidator), outState, (a, b){
-    a.enabled = b.state != LoginState.LOADING;
-    return a;
+     a.enabled = b.state != LoginState.LOADING;
+     return a;
   });
 
   Stream<FieldState> get outPassword => Rx.combineLatest2(
@@ -29,13 +29,13 @@ class LoginBloc with LoginValidator {
   });
 
   Stream<ButtonState> get outLoginButton => Rx.combineLatest3(
-      outEmail, outPassword, outState, (a, b, c){
-    return ButtonState(
+    outEmail, outPassword, outState, (a, b, c){
+      return ButtonState(
         loading: c.state == LoginState.LOADING,
         enabled: a.error == null && b.error == null
             && c.state != LoginState.LOADING
-    );
-  }
+      );
+    }
   );
 
   Future<bool> loginWithEmail() async {
@@ -47,19 +47,18 @@ class LoginBloc with LoginValidator {
     return true;
   }
 
-  void dispose(){
-    _stateController.close();
-    _emailController.close();
-    _passwordController.close();
-  }
-
   Future<bool> loginWithFacebook() async {
-
     _stateController.add(LoginBlocState(LoginState.LOADING_FACE));
 
     await Future.delayed(Duration(seconds: 3));
 
     _stateController.add(LoginBlocState(LoginState.DONE));
     return true;
+  }
+
+  void dispose(){
+    _stateController.close();
+    _emailController.close();
+    _passwordController.close();
   }
 }

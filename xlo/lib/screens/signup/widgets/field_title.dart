@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk/generated/i18n.dart';
 
 class FieldTitle extends StatelessWidget {
 

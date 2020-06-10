@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/blocs/login/field_state.dart';
 import 'package:xlo/blocs/login/login_bloc.dart';
-import 'package:xlo/screens/login/widget/login_button.dart';
-import 'package:xlo/screens/login/widget/or_divoder.dart';
+import 'package:xlo/screens/login/widgets/facebook_button.dart';
+import 'package:xlo/screens/login/widgets/login_button.dart';
+import 'package:xlo/screens/login/widgets/or_divider.dart';
 import 'package:xlo/screens/signup/signup_screen.dart';
-
-import 'widget/facebook_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -13,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   LoginBloc _loginBloc = LoginBloc();
 
   @override
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               StreamBuilder<FieldState>(
                 stream: _loginBloc.outEmail,
                 initialData: FieldState(),
-                builder: (context, snapshot) {
+                builder: (context, snapshot){
                   return TextField(
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
@@ -82,8 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'Esqueceu sua senha?',
                         style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.blue),
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue
+                        ),
                       ),
                       onTap: () {
                         //Navigator.of(context).push(MaterialPageRoute(
@@ -96,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
               StreamBuilder<FieldState>(
                 stream: _loginBloc.outPassword,
                 initialData: FieldState(),
-                builder: (context, snapshot) {
+                builder: (context, snapshot){
                   return TextField(
                     autocorrect: false,
                     obscureText: true,
@@ -119,26 +120,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text(
-                      'Não tem uma conta?',
+                      'Não tem uma conta? ',
                       style: TextStyle(fontSize: 16),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => SignUpScreen()
-                        ));
+                            builder: (context) => SignUpScreen()));
                       },
                       child: Text(
                         'Cadastre-se',
                         style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.blue,
-                            fontSize: 16),
+                          decoration: TextDecoration.underline,
+                          color: Colors.blue,
+                          fontSize: 16,
+                        ),
                       ),
                     )
                   ],
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -146,3 +147,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+

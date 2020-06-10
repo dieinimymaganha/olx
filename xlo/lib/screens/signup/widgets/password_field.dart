@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PasswordField extends StatelessWidget {
@@ -7,7 +6,6 @@ class PasswordField extends StatelessWidget {
 
   final FormFieldSetter<String> onSaved;
   final bool enabled;
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +16,9 @@ class PasswordField extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 2),
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
-              color: n <= level ? _getColor(level) : Colors.transparent,
-              border: n > level ? Border.all(color: Colors.grey) : null
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+            color: n <= level ? _getColor(level) : Colors.transparent,
+            border: n > level ? Border.all(color: Colors.grey) : null
           ),
         ),
       );
@@ -45,18 +43,18 @@ class PasswordField extends StatelessWidget {
               enabled: enabled,
             ),
             if(state.value.isNotEmpty)
-              Container(
-                margin: const EdgeInsets.only(top: 6),
-                height: 8,
-                child: Row(
-                  children: <Widget>[
-                    _buildBar(0, state.value),
-                    _buildBar(1, state.value),
-                    _buildBar(2, state.value),
-                    _buildBar(3, state.value),
-                  ],
-                ),
+            Container(
+              margin: const EdgeInsets.only(top: 6),
+              height: 8,
+              child: Row(
+                children: <Widget>[
+                  _buildBar(0, state.value),
+                  _buildBar(1, state.value),
+                  _buildBar(2, state.value),
+                  _buildBar(3, state.value),
+                ],
               ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 6, left: 10),
               child: state.value.isNotEmpty || state.hasError ? Text(

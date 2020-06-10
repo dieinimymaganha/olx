@@ -7,7 +7,7 @@ class CustomHeader extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context)=>LoginScreen())
+          MaterialPageRoute(builder: (context)=>LoginScreen())
         );
       },
       child: Container(

@@ -3,13 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/blocs/home_bloc.dart';
 import 'package:xlo/screens/base/base_screen.dart';
-import 'package:xlo/screens/filter/filter_screen.dart';
-import 'package:xlo/screens/home/home_screen.dart';
-import 'package:xlo/screens/login/login_screen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -21,7 +19,7 @@ class MyApp extends StatelessWidget {
         Provider<HomeBloc>(
           create: (_) => HomeBloc(),
           dispose: (context, value) => value.dispose(),
-        ),
+        )
       ],
       child: MaterialApp(
         title: 'XLO',
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: BaseScreen(),
       ),
     );
   }
