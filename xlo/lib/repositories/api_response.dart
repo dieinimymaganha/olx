@@ -1,7 +1,7 @@
 import 'api_error.dart';
 
 class ApiResponse{
-  ApiResponse.sucess({this.success}){
+  ApiResponse.sucess({this.result}){
     success = true;
   }
 
