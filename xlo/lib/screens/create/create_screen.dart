@@ -75,8 +75,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
               ),
-              onSaved: (a) {},
-
+              onSaved: (a) {
+                print(a);
+              },
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -116,10 +117,9 @@ class _CreateScreenState extends State<CreateScreen> {
                       fontWeight: FontWeight.w500),
                 ),
                 onPressed: () {
-                  getAddressFromApi('83823-160');
-
-
-                  if (_formKey.currentState.validate()) {}
+                  if (_formKey.currentState.validate()) {
+                    _formKey.currentState.save();
+                  }
                 },
               ),
             )

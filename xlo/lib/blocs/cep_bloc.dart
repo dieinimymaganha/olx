@@ -14,22 +14,25 @@ class CepBlocState {
 }
 
 class CepBloc {
+  CepBloc() {
+    onChanged('');
+  }
+
   final BehaviorSubject<CepBlocState> _cepController =
       BehaviorSubject<CepBlocState>();
+
+  Stream<CepBlocState> get outCep => _cepController.stream;
 
   void search(String cep) async {
     final ApiResponse apiResponse = await getAddressFromApi(cep);
     if (apiResponse.success) {
       _cepController.add(CepBlocState(
-        cepFieldState: CepFieldState.VALID,
-        cep: cep,
-        address: apiResponse.result
-      ));
+          cepFieldState: CepFieldState.VALID,
+          cep: cep,
+          address: apiResponse.result));
     } else {
-      _cepController.add(CepBlocState(
-        cepFieldState: CepFieldState.INVALID,
-        cep: cep
-      ));
+      _cepController
+          .add(CepBlocState(cepFieldState: CepFieldState.INVALID, cep: cep));
     }
   }
 
