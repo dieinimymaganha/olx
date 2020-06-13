@@ -6,6 +6,8 @@ import 'package:xlo/models/ad.dart';
 import 'package:xlo/screens/home/widgets/search_dialog.dart';
 import 'package:xlo/screens/home/widgets/top_bar.dart';
 
+import 'widget/product_tile.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -91,9 +93,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(snapshot.data[index].title),
-                      );
+                      return ProductTile(snapshot.data[index]);
+
                     });
               },
             ),
