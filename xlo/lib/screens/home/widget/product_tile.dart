@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:xlo/helpers/format_field.dart';
 import 'package:xlo/models/ad.dart';
 import 'package:xlo/screens/product/product_screen.dart';
 
@@ -63,8 +64,5 @@ class ProductTile extends StatelessWidget {
     );
   }
 
-  String numToString(num number) {
-    return NumberFormat('###,##0.00', 'pt-br')
-        .format(double.parse(number.toStringAsFixed(2)));
-  }
+
 }

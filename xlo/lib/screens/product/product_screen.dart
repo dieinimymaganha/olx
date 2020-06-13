@@ -1,6 +1,11 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:xlo/models/ad.dart';
+import 'package:xlo/screens/product/widget/location_panel.dart';
+
+import 'widget/description_panel.dart';
+import 'widget/main_panel.dart';
+import 'widget/user_panel.dart';
 
 class ProductScreen extends StatelessWidget {
   final Ad ad;
@@ -12,14 +17,14 @@ class ProductScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Anuncio'),
-          elevation: 0,
+        elevation: 0,
       ),
       body: ListView(
         children: <Widget>[
           Container(
             height: 280,
             child: Carousel(
-              images: ad.images.map((f){
+              images: ad.images.map((f) {
                 return FileImage(f);
               }).toList(),
               dotSize: 4,
@@ -27,6 +32,21 @@ class ProductScreen extends StatelessWidget {
               dotBgColor: Colors.transparent,
               dotColor: Colors.pink,
               autoplay: false,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                MainPanel(ad),
+                Divider(),
+                DescriptionPanel(ad),
+                Divider(),
+                LocationPanel(ad),
+                Divider(),
+                UserPanel(ad),
+              ],
             ),
           ),
         ],
