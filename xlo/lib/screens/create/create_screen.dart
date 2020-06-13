@@ -1,7 +1,10 @@
 import 'package:brasil_fields/formatter/real_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:xlo/api/api_postalcode.dart';
+import 'package:xlo/blocs/create_bloc.dart';
+import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/common/cep_field.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
 import 'package:xlo/models/ad.dart';
@@ -17,6 +20,19 @@ class CreateScreen extends StatefulWidget {
 class _CreateScreenState extends State<CreateScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Ad ad = Ad();
+  CreateBloc _createBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _createBloc = CreateBloc();
+  }
+
+  @override
+  void dispose() {
+    _createBloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,10 +149,13 @@ class _CreateScreenState extends State<CreateScreen> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    print(ad);
+                    final bool success = await  _createBloc.saveAd(ad);
+                    if(success){
+                      Provider.of<DrawerBloc>(context).setPage(0);
+                    }
                   }
                 },
               ),
