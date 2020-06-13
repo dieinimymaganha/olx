@@ -1,6 +1,8 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:xlo/models/user.dart';
+import 'package:xlo/screens/edit_account/widget/user_type_widget.dart';
 
 class EditAccount extends StatefulWidget {
   @override
@@ -8,6 +10,9 @@ class EditAccount extends StatefulWidget {
 }
 
 class _EditAccountState extends State<EditAccount> {
+
+  final User _user = User(name: 'Dieinimy', phone: '041 99163-9199');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,12 @@ class _EditAccountState extends State<EditAccount> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: <Widget>[
+          UserTypeWidget(
+            initialValue: _user.userType,
+            onSaved: (s){},
+          ),
           TextFormField(
+            initialValue: _user.name,
             decoration: _buildDecotarion('Nome *'),
             validator: (name) {
               if (name.length < 6) {
@@ -29,6 +39,7 @@ class _EditAccountState extends State<EditAccount> {
             onSaved: (name) {},
           ),
           TextFormField(
+            initialValue: _user.phone,
             decoration: _buildDecotarion('Telefone *'),
             keyboardType: TextInputType.phone,
             inputFormatters: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
-import 'package:xlo/screens/edit_account.dart';
+import 'package:xlo/screens/edit_account/edit_account.dart';
 
 class AccountScreen extends StatelessWidget {
   @override

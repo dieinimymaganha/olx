@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/models/ad.dart';
-import 'package:xlo/screens/edit_account.dart';
+import 'package:xlo/screens/edit_account/edit_account.dart';
 
 class BottomBar extends StatelessWidget {
   final Ad ad;
