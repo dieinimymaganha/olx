@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:xlo/api/api_postalcode.dart';
 import 'package:xlo/common/cep_field.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
+import 'package:xlo/models/ad.dart';
 
 import 'widgets/hide_phone_widget.dart';
 import 'widgets/image_field.dart';
@@ -15,6 +16,7 @@ class CreateScreen extends StatefulWidget {
 
 class _CreateScreenState extends State<CreateScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Ad ad = Ad();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,9 @@ class _CreateScreenState extends State<CreateScreen> {
         child: ListView(
           children: <Widget>[
             ImagesField(
-              onSaved: (images) {},
+              onSaved: (images) {
+                ad.images = images;
+              },
               initialValue: [],
             ),
             TextFormField(
@@ -46,7 +50,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 if (text.isEmpty) return 'Campo obrigatório';
                 return null;
               },
-              onSaved: (t) {},
+              onSaved: (t) {
+                ad.title = t;
+              },
             ),
             TextFormField(
               maxLines: null,
@@ -64,7 +70,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 if (text.trim().length < 10) return 'Descrição muito curta';
                 return null;
               },
-              onSaved: (d) {},
+              onSaved: (d) {
+                ad.description = d;
+              },
             ),
             CepField(
               decoration: InputDecoration(
@@ -77,7 +85,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
               ),
               onSaved: (a) {
-                print(a);
+                ad.address = a;
               },
             ),
             TextFormField(
@@ -104,10 +112,14 @@ class _CreateScreenState extends State<CreateScreen> {
                   return 'Utilize valores válidos';
                 return null;
               },
-              onSaved: (price) {},
+              onSaved: (p) {
+                ad.price = int.parse(getSanitizedText(p)) / 100;
+              },
             ),
             HidePhoneWidget(
-              onSaved: (h) {},
+              onSaved: (h) {
+                ad.hidePhone = h;
+              },
               inititalValue: false,
             ),
             Container(
@@ -124,6 +136,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
+                    print(ad);
                   }
                 },
               ),
