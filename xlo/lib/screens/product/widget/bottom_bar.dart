@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/models/ad.dart';
+import 'package:xlo/screens/edit_account.dart';
 
 class BottomBar extends StatelessWidget {
   final Ad ad;
@@ -45,7 +46,9 @@ class BottomBar extends StatelessWidget {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+
+                    },
                     child: Text(
                       'Chat',
                       textAlign: TextAlign.center,
