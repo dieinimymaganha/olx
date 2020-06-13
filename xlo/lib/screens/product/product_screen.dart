@@ -46,6 +46,7 @@ class ProductScreen extends StatelessWidget {
                 LocationPanel(ad),
                 Divider(),
                 UserPanel(ad),
+                const SizedBox(height: 32,)
               ],
             ),
           ),
