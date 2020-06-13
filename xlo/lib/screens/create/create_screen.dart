@@ -5,6 +5,7 @@ import 'package:xlo/api/api_postalcode.dart';
 import 'package:xlo/common/cep_field.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
 
+import 'widgets/hide_phone_widget.dart';
 import 'widgets/image_field.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -99,11 +100,15 @@ class _CreateScreenState extends State<CreateScreen> {
               ],
               validator: (text) {
                 if (text.isEmpty) return 'Campo obrigatório';
-                if (double.tryParse(text) == null)
+                if (int.tryParse(getSanitizedText(text)) == null)
                   return 'Utilize valores válidos';
                 return null;
               },
               onSaved: (price) {},
+            ),
+            HidePhoneWidget(
+              onSaved: (h) {},
+              inititalValue: false,
             ),
             Container(
               height: 50,
@@ -127,5 +132,9 @@ class _CreateScreenState extends State<CreateScreen> {
         ),
       ),
     );
+  }
+
+  String getSanitizedText(String text) {
+    return text.replaceAll(RegExp(r'[^\d]'), '');
   }
 }
